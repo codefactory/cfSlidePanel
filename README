@@ -56,8 +56,6 @@ $('#container').cfSlidePanel({
 	// 슬라이딩 속도, 밀리세컨드 단위의 숫자 또는 jQuery.animate()에 사용가능한 'slow', 'fast' 등 문자열
 	touchMoveLength: 100,
 	// px단위, 최소 얼마만큼 touchmove를 해야 패널을 움직일지 기준이 되는 길이
-	verticalScroll: false,
-	// default값은 false입니다. true로 설정할 경우 패널위에서 상하 스크롤을 할 수 있습니다. 제가 잘 못만들어서 true일 경우 좌우 swipe가 false일 때보다 잘 안되는 것 같습니다.
 	getIndex: function(index) {
 		alert(index);
 	},
