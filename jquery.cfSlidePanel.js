@@ -13,7 +13,6 @@
 		defaults = {
 			speed: 400,				// 슬라이딩 속도, 밀리세컨드 단위의 숫자 또는 jQuery.animate()에 사용가능한 'slow', 'fast' 등 문자열
 			touchMoveLength: 100,	// px단위, 최소 얼마만큼 touchmove를 해야 패널을 움직일지 기준이 되는 길이
-			verticalScroll: false,
 			getIndex: null,			// navigator를 만들 때 사용할 수 있는 index를 얻어내는 callback
 									// function(index) { alert(index); } 와 같이 등록하면 슬라이드 애니메이션에 대한 callback으로 패널의 index를 얻을 수 있음(zero based index),
 			prevBtn: '.prev',
@@ -21,7 +20,7 @@
 		};
 		
 	// 터치 관련 변수
-	var startMarginLeft = 0, startX = 0, curX = 0;
+	var startMarginLeft = 0, startX = 0, curX = 0, prevCurX = 0;
 		
 	// plugin constructor
 	function Plugin(element, options) {
@@ -103,10 +102,6 @@
 			
 			$this.unbind('.cfSlidePanel');
 			$this.bind('mousedown.cfSlidePanel touchstart.cfSlidePanel', function(e) {
-				if ( ! options.verticalScroll) {
-					e.preventDefault();
-				}
-				
 				if (container.is(':animated')) {
 					return;
 				}
@@ -181,10 +176,6 @@
 					
 					$this.unbind('.cfSlidePanel');
 					$this.bind('mousedown.cfSlidePanel touchstart.cfSlidePanel', function(e) {
-						if ( ! options.verticalScroll) {
-							e.preventDefault();
-						}
-						
 						if (container.is(':animated')) {
 							return;
 						}
@@ -219,20 +210,25 @@
 	
 	// 터치 swipe하고 있는 동안
 	function onTouchMove(e) {
-		if ( ! e.data.options.verticalScroll) {
-			e.preventDefault();
-		}
+		prevCurX = curX;
+		curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
 		
-		if ($(this).find('ul.cf-slide-panel-ul').is(':animated')) {
+		if (Math.abs(curX - startX) > 20) {		// 20px 이상 움직이면 onTouchMove 동작을 하고 그렇지 않으면 브라우저 기본 동작
+			e.preventDefault();
+			
+			if ($(this).find('ul.cf-slide-panel-ul').is(':animated')) {
+				return;
+			}
+			
+			var ul = $(this).find('ul.cf-slide-panel-ul'),
+				marginLeft = parseInt(ul.css('marginLeft'));
+			
+			ul.css('marginLeft', marginLeft - (prevCurX - (curX ? curX : e.pageX)));
+		} else {
 			return;
 		}
 		
-		var ul = $(this).find('ul.cf-slide-panel-ul'),
-			marginLeft = parseInt(ul.css('marginLeft'));
-		
-		ul.css('marginLeft', marginLeft - (curX - ((e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX)));
-		
-		curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
+			
 	}
 	
 	// jQuery 객체와 element의 data에 plugin을 넣음
