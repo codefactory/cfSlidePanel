@@ -4,11 +4,10 @@
 
 모바일 기기에서 터치 swipe(플리킹)로, PC에서는 mousemove로 패널을 좌우 슬라이딩 할 수 있게 해주는 plugin 입니다.
 http://m.naver.com 이나 http://m.daum.net 에서 기사 목록을 터치로 좌우로 움직일 수 있는 것과 같은 기능입니다.
-네이버나 다음의 기능보다는 많이 안좋습니다.
+아직 버그가 좀 남아있는 상태입니다.
 
-이 plugin을 사용하기 위해서 제가 전에 만든 2개의 plugin을 같이 사용하고 있습니다.
+이 plugin을 사용하기 위해서 제가 전에 만든 cfSlider plugin을 같이 사용하고 있습니다.
 cfSlider: https://github.com/codefactory/cfSlider
-cfTouchSwipe: https://github.com/codefactory/cfTouchSwipe
 
 [소스코드] https://github.com/codefactory/cfSlidePanel
 [데모보기] http://codefactory.kr/demos/cfslidepanel
@@ -53,6 +52,10 @@ slide panel의 사용은 아래와 같이 합니다.
 cfTouchSwipe의 적용가능 옵션은 아래와 같습니다.
 
 $('#container').cfSlidePanel({
+	speed: 400,
+	// 슬라이딩 속도, 밀리세컨드 단위의 숫자 또는 jQuery.animate()에 사용가능한 'slow', 'fast' 등 문자열
+	touchMoveLength: 100,
+	// px단위, 최소 얼마만큼 touchmove를 해야 패널을 움직일지 기준이 되는 길이
 	verticalScroll: false,
 	// default값은 false입니다. true로 설정할 경우 패널위에서 상하 스크롤을 할 수 있습니다. 제가 잘 못만들어서 true일 경우 좌우 swipe가 false일 때보다 잘 안되는 것 같습니다.
 	getIndex: function(index) {
