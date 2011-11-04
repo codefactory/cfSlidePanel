@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>slide panel</title>
+	<title>cf slide panel</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
 	<style>
 		html, body {
@@ -110,7 +110,6 @@
 	
 	<script src="jquery-1.6.4.min.js"></script>
 	<script src="jquery.cfSlider.min.js"></script>		<!-- https://github.com/codefactory/cfSlider -->
-	<script src="jquery.cfTouchSwipe.min.js"></script>	<!-- https://github.com/codefactory/cfTouchSwipe -->
 	<script src="jquery.cfSlidePanel.min.js"></script>
 	<script>
 		$('#container').cfSlidePanel({
@@ -122,6 +121,8 @@
 		
 		// 옵션 설명
 		// $('#container').cfSlidePanel({
+			// speed: 400,				// 슬라이딩 속도, 밀리세컨드 단위의 숫자 또는 jQuery.animate()에 사용가능한 'slow', 'fast' 등 문자열
+			// touchMoveLength: 100,	// px단위, 최소 얼마만큼 touchmove를 해야 패널을 움직일지 기준이 되는 길이
 			// verticalScroll: false,		// default값은 false입니다. true로 설정할 경우 패널위에서 상하 스크롤을 할 수 있습니다. 제가 잘 못만들어서 true일 경우 좌우 swipe가 false일 때보다 잘 안되는 것 같습니다.
 			// getIndex: function(index) {	// default값은 null입니다. 여기에 함수를 등록하면 index를 인자로 받아서 사용하실 수 있습니다. 슬라이드 애니메이션이 끝나고 현재 화면에 보이는 패널의 index를 받을 수 있으며 navigator 컨트롤을 만들 때 사용하시면 됩니다.
 				// alert(index);
