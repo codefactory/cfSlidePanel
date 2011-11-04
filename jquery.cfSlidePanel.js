@@ -213,7 +213,7 @@
 		prevCurX = curX;
 		curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
 		
-		if (Math.abs(curX - startX) > 20) {		// 20px 이상 움직이면 onTouchMove 동작을 하고 그렇지 않으면 브라우저 기본 동작
+		if (Math.abs(curX - startX) > 10) {		// 20px 이상 움직이면 onTouchMove 동작을 하고 그렇지 않으면 브라우저 기본 동작
 			e.preventDefault();
 			
 			if ($(this).find('ul.cf-slide-panel-ul').is(':animated')) {
