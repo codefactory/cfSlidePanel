@@ -73,6 +73,36 @@
 		sessionStorage.cfSlidePanelCurrentIndex = undefined;
 		
 		// cfSlider
+		makeCfSlider($this, options, panelWidth);
+		
+		
+		// panel 너비가 100%였을 경우에는 orientation이 바뀌었을 때  panel 너버의 px 값이 바뀌므로 계산을 새로 해서 cfSlider를 다시 만들어줌
+		$(window).bind('orientationchange', function() {
+			
+			setTimeout(function() {
+				
+				var panelWidth = $this.width();
+					
+				$('div.cf-slide-panel-container').css({
+					width: panelWidth
+				});
+				
+				$('li.cf-slide-panel-item').css({
+					width: panelWidth
+				});
+				
+				// cfSlider - orientation이 바뀌면 panelWidth가 바뀌기 때문에 cfSlider를 다시 만들어줌
+				makeCfSlider($this, options, panelWidth);
+				
+			}, 100);	// orientation이 바뀌고 난 후 약간의 시간여유를 두고 실행
+			
+		});
+		
+	};
+	
+	// cfSlider 만들기
+	function makeCfSlider($this, options, panelWidth) {
+		
 		$this.data('plugin_cfSlider', '');		// 초기화
 		$this.cfSlider({
 			speed: options.speed,
@@ -97,123 +127,31 @@
 			}
 			
 			// cfSlider 생성 후 touchmove listener 등록
-			var cfSlider = $this.data('plugin_cfSlider'),
-				container = $this.find('.cf-slide-panel-ul');
+			var cfSlider = $this.data('plugin_cfSlider');
 			
-			$this.unbind('.cfSlidePanel');
+			$this.unbind('.cfSlidePanel');	// cfSlidePanel 관련 이벤트를 등록하기 위해 기존 이벤트 초기화
 			$this.bind('mousedown.cfSlidePanel touchstart.cfSlidePanel', function(e) {
-				if (container.is(':animated')) {
+				if (cfSlider.container.is(':animated')) {
 					return;
 				}
 				
-				startMarginLeft = parseInt(container.css('marginLeft'));
+				startMarginLeft = parseInt(cfSlider.container.css('marginLeft'));
 				startX = curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
 				
 				$this.bind('mousemove.cfSlidePanel touchmove.cfSlidePanel', {options: options}, onTouchMove);
+				$this.bind('mouseup.cfSlidePanel touchend.cfSlidePanel', {cfSlider: cfSlider, options: options, elem: $this}, onTouchEnd);
 			});
-			
-			$this.bind('mouseup.cfSlidePanel touchend.cfSlidePanel', function(e) {
-				if (container.is(':animated')) {
-					return;
-				}
-				
-				if (Math.abs(curX - startX) < options.touchMoveLength) {
-					container.css('marginLeft', startMarginLeft);
-				} else if (curX > startX) {
-					cfSlider.go('prev', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
-				} else {
-					cfSlider.go('next', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
-				}
-				$(this).unbind('mousemove.cfSlidePanel touchmove.cfSlidePanel', onTouchMove);
-			});
-		});
-		
-		
-		// panel 너비가 100%였을 경우에는 orientation이 바뀌었을 때  panel 너버의 px 값이 바뀌므로 계산을 새로 해서 cfSlider를 다시 만들어줌
-		$(window).bind('orientationchange', function() {
-			
-			setTimeout(function() {
-				
-				var panels = $this.find('.panel'),
-					panelLength = panels.length,
-					panelWidth = $this.width();
-					
-				$('div.cf-slide-panel-container').css({
-					width: panelWidth
-				});
-				
-				$('li.cf-slide-panel-item').css({
-					width: panelWidth
-				});
-				
-				// cfSlider - orientation이 바뀌면 panelWidth가 바뀌기 때문에 cfSlider를 다시 만들어줌
-				$this.data('plugin_cfSlider', '');		// 초기화
-				$this.cfSlider({
-					speed: options.speed,
-					container: '.cf-slide-panel-ul',
-					item: '.cf-slide-panel-item',
-					prevEventType: 'cf-slide-panel-prev',
-					nextEventType: 'cf-slide-panel-next',
-					prevBtn: options.prevBtn,
-					nextBtn: options.nextBtn,
-					callback: function(item) {
-						sessionStorage.cfSlidePanelCurrentIndex = $(item).data('index');
-						
-						if (typeof options.getIndex === 'function') {
-							options.getIndex($(item).data('index'));
-						}
-					}
-				}).each(function() {
-					if (sessionStorage.cfSlidePanelCurrentIndex != undefined) {
-						$('.cf-slide-panel-ul').css({
-							marginLeft: -(panelWidth * (parseInt(sessionStorage.cfSlidePanelCurrentIndex) + 1)) + 'px'
-						});
-					}
-					
-					// cfSlider 생성 후 touchmove listener 등록
-					var cfSlider = $this.data('plugin_cfSlider'),
-						container = $this.find('.cf-slide-panel-ul');
-					
-					$this.unbind('.cfSlidePanel');
-					$this.bind('mousedown.cfSlidePanel touchstart.cfSlidePanel', function(e) {
-						if (container.is(':animated')) {
-							return;
-						}
-						
-						startMarginLeft = parseInt(container.css('marginLeft'));
-						startX = curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
-						
-						$this.bind('mousemove.cfSlidePanel touchmove.cfSlidePanel', {options: options}, onTouchMove);
-					});
-					
-					$this.bind('mouseup.cfSlidePanel touchend.cfSlidePanel', function(e) {
-						if (container.is(':animated')) {
-							return;
-						}
-						
-						if (Math.abs(curX - startX) < options.touchMoveLength) {
-							container.css('marginLeft', startMarginLeft);
-						} else if (curX > startX) {
-							cfSlider.go('prev', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
-						} else {
-							cfSlider.go('next', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
-						}
-						$(this).unbind('mousemove.cfSlidePanel touchmove.cfSlidePanel', onTouchMove);
-					});
-				});
-				
-			}, 100);	// orientation이 바뀌고 난 후 약간의 시간여유를 두고 실행
 			
 		});
 		
-	};
+	}
 	
 	// 터치 swipe하고 있는 동안
 	function onTouchMove(e) {
 		prevCurX = curX;
 		curX = (e.originalEvent && e.originalEvent.touches) ? e.originalEvent.touches[0].pageX : e.pageX;
 		
-		if (Math.abs(curX - startX) > 10) {		// 20px 이상 움직이면 onTouchMove 동작을 하고 그렇지 않으면 브라우저 기본 동작
+		if (Math.abs(curX - startX) > 10) {		// 10px 이상 움직이면 onTouchMove 동작을 하고 그렇지 않으면 브라우저 기본 동작
 			e.preventDefault();
 			
 			if ($(this).find('ul.cf-slide-panel-ul').is(':animated')) {
@@ -229,6 +167,28 @@
 		}
 		
 			
+	}
+	
+	// 터치 swipe 끝났을 때
+	function onTouchEnd(e) {
+		var cfSlider = e.data.cfSlider,
+			options = e.data.options,
+			$this = e.data.elem;
+		
+		if (cfSlider.container.is(':animated')) {
+			return;
+		}
+		
+		if (Math.abs(curX - startX) < options.touchMoveLength) {
+			cfSlider.container.animate({
+				marginLeft: startMarginLeft
+			}, 'fast');
+		} else if (curX > startX) {
+			cfSlider.go('prev', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
+		} else {
+			cfSlider.go('next', cfSlider.container, cfSlider.marginType, cfSlider.itemSize, cfSlider.itemLength, cfSlider.options, startMarginLeft);
+		}
+		$this.unbind('mousemove.cfSlidePanel touchmove.cfSlidePanel mouseup.cfSlidePanel touchend.cfSlidePanel');
 	}
 	
 	// jQuery 객체와 element의 data에 plugin을 넣음
