@@ -76,8 +76,8 @@
 		makeCfSlider($this, options, panelWidth);
 		
 		
-		// panel 너비가 100%였을 경우에는 orientation이 바뀌었을 때  panel 너버의 px 값이 바뀌므로 계산을 새로 해서 cfSlider를 다시 만들어줌
-		$(window).bind('orientationchange', function() {
+		// 폰을 가로/세로 전환했을 경우  panel 너버의 px 값이 바뀌므로 계산을 새로 해서 cfSlider를 다시 만들어줌 - pc에서의 호환을 위해 orientationchange 이벤트 대신 resize 이벤트 사용
+		$(window).bind('resize', function() {
 			
 			setTimeout(function() {
 				
