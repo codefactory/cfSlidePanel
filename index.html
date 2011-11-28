@@ -104,6 +104,10 @@
 	<script>
 		// 모바일 브라우저 주소창 안보이게 하기
 		(function() {
+			if (!window.addEventListener) {
+				return;
+			}
+			
 			function hideAddressBar() {
 			
 				if (document.height <= window.outerHeight) return;		// 웹페이지의 높이가 화면높이보다 작을 때는 실행할 필요가 없으므로 종료
