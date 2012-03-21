@@ -7,11 +7,14 @@
 모바일 기기에서 터치 swipe(플리킹)로, PC에서는 mousemove로 패널을 좌우 슬라이딩 할 수 있게 해주는 plugin 입니다.
 http://m.naver.com 이나 http://m.daum.net 에서 기사 목록을 터치로 좌우로 움직일 수 있는 것과 같은 기능입니다.
 
-이 plugin을 사용하기 위해서 제가 전에 만든 cfSlider plugin을 같이 사용하고 있습니다.
-cfSlider: https://github.com/codefactory/cfSlider
-
 [소스코드] https://github.com/codefactory/cfSlidePanel
 [데모보기] http://codefactory.kr/demos/cfslidepanel
+
+##### 참고
+이 plugin을 사용하기 위해서 제가 전에 만든 cfSlider plugin을 같이 사용하고 있습니다.
+
+cfSlider: https://github.com/codefactory/cfSlider
+
 
 ---------------------------------------
  * 사용방법
