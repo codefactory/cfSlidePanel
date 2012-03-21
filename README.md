@@ -21,19 +21,19 @@ cfSlider: https://github.com/codefactory/cfSlider
 
 다음과 같은 형태의 HTML 마크업이 필요합니다. 실제로 슬라이드될 패널들을 감싸는 container 엘리먼트가 필요하며 패널들에는 'panel'이라는 class를 지정해 줍니다. 
 
-<pre>
-	<div id="container">
-		<div class="panel">
-			첫 번째 패널
-		</div>
-		<div class="panel">
-			두 번째 패널
-		</div>
-		<div class="panel">
-			세 번째 패널
-		</div>
+```html
+<div id="container">
+	<div class="panel">
+		첫 번째 패널
 	</div>
-</pre>
+	<div class="panel">
+		두 번째 패널
+	</div>
+	<div class="panel">
+		세 번째 패널
+	</div>
+</div>
+```
 
 
 - 주의사항 -
