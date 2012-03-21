@@ -37,7 +37,7 @@ cfSlider: https://github.com/codefactory/cfSlider
 
 
 ###### 주의사항
-각 패널에 해당하는 div들에 id를 주시면 안됩니다. 패널들은 cfSlidePanel에 의해 복제가 되어 dom에 중복되어 존재하게 되기 때문에 id는 적합한 선택자가 되지 못하게 됩니다. 선택자가 필요한 경우 불편하시겠지만 아래와 같이 class를 선택자로 사용해 주십시오
+각 패널에 해당하는 div들에 id를 주시면 안됩니다. 각각의 패널들은 cfSlidePanel과 함께 사용되는 cfSlider에 의해 복제가 되어 dom에 중복되어 존재하게 되기 때문에 id는 적합한 선택자가 되지 못하게 됩니다. 각 패널을 위한 선택자가 필요한 경우 불편하시겠지만 아래와 같이 class를 선택자로 사용해 주십시오
 
 ```html
 <div id="container">
