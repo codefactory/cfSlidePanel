@@ -1,7 +1,9 @@
 안녕하세요 코드팩토리입니다. http://codefactory.kr, [프로그램 개발문의] master@codefactory.kr
+
 이 프로그램은 아무런 제약없이 복사/수정/재배포 하셔도 되며 주석을 지우셔도 됩니다.
 감사합니다.
 
+### 소개
 모바일 기기에서 터치 swipe(플리킹)로, PC에서는 mousemove로 패널을 좌우 슬라이딩 할 수 있게 해주는 plugin 입니다.
 http://m.naver.com 이나 http://m.daum.net 에서 기사 목록을 터치로 좌우로 움직일 수 있는 것과 같은 기능입니다.
 
