@@ -10,124 +10,141 @@
 			padding: 0;
 		}
 		
-		#container {
+		.container {
 			width: 100%;
 		}
 		
 		div.panel {
 			padding: 30px 0;
+			text-align: center;
 			background: #efefef;
 		}
 		
-		#navigator {
+		.navigator {
 			font-weight: bold;
 			text-align: center;
+		}
+		
+		hr {
+			margin: 50px 0;
 		}
 	</style>
 </head>
 <body>
 	
 	<div>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
+		<p>첫 번째 cfSlidePanel</p>
 	</div>
 	
-	<!-- cfSlidePanel 영역 시작 -->
-	<div id="container">
+	<!-- 첫 번째 cfSlidePanel 영역 시작 -->
+	<div id="container" class="container">
 		
 		<div class="panel">
 			<h1>패널 1</h1>
-			<p>안녕하세요 첫 번째 패널입니다.</p>
-			<p>안녕하세요 첫 번째 패널입니다.</p>
-			<p>안녕하세요 첫 번째 패널입니다.</p>
+			<img src="lyh.jpg" width="320">
 		</div>
 		
 		<div class="panel">
 			<h1>패널 2</h1>
-			<p>안녕하세요 두 번째 패널입니다.</p>
-			<p>안녕하세요 두 번째 패널입니다.</p>
-			<p>안녕하세요 두 번째 패널입니다.</p>
+			<img src="lyh.jpg" width="320">
 		</div>
 		
 		<div class="panel">
 			<h1>패널 3</h1>
-			<p>안녕하세요 세 번째 패널입니다.</p>
-			<p>안녕하세요 세 번째 패널입니다.</p>
-			<p>안녕하세요 세 번째 패널입니다.</p>
+			<img src="lyh.jpg" width="320">
 		</div>
 		
 		<div class="panel">
 			<h1>패널 4</h1>
-			<p>안녕하세요 네 번째 패널입니다.</p>
-			<p>안녕하세요 네 번째 패널입니다.</p>
-			<p>안녕하세요 네 번째 패널입니다.</p>
+			<img src="lyh.jpg" width="320">
 		</div>
 		
 		<div class="panel">
 			<h1>패널 5</h1>
-			<p>안녕하세요 다섯 번째 패널입니다.</p>
-			<p>안녕하세요 다섯 번째 패널입니다.</p>
-			<p>안녕하세요 다섯 번째 패널입니다.</p>
+			<img src="lyh.jpg" width="320">
 		</div>
 		
 	</div>
-	<!-- cfSlidePanel 영역 끝 -->
+	<!-- 첫 번째 cfSlidePanel 영역 끝 -->
 	
-	<div id="navigator">
+	<div id="navigator" class="navigator">
 		<p><span class="index">1</span> / 5</p>
 	</div>
 	
 	<div>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
-		<p>안녕하세요</p>
+		<p>스마트폰에서 좌우 touch swipe 로 panel 이동이 가능하며 데스크탑에서는 좌우 화살표 또는 마우스 드래그로 이동이 가능합니다.</p>
+	</div>
+	
+	<hr>
+	
+	<div>
+		<p>두 번째 cfSlidePanel</p>
+	</div>
+	
+	<!-- 두 번째 cfSlidePanel 영역 시작 -->
+	<div id="container2" class="container">
+		
+		<div class="panel">
+			<h1>패널 1</h1>
+			<img src="lyh.jpg" width="320">
+		</div>
+		
+		<div class="panel">
+			<h1>패널 2</h1>
+			<img src="lyh.jpg" width="320">
+		</div>
+		
+		<div class="panel">
+			<h1>패널 3</h1>
+			<img src="lyh.jpg" width="320">
+		</div>
+		
+		<div class="panel">
+			<h1>패널 4</h1>
+			<img src="lyh.jpg" width="320">
+		</div>
+		
+		<div class="panel">
+			<h1>패널 5</h1>
+			<img src="lyh.jpg" width="320">
+		</div>
+		
+	</div>
+	<!-- 두 번째 cfSlidePanel 영역 끝 -->
+	
+	<div id="navigator2" class="navigator">
+		<p><span class="index">1</span> / 5</p>
+	</div>
+	
+	<div>
+		<p>스마트폰에서 좌우 touch swipe 로 panel 이동이 가능하며 데스크탑에서는 상하 화살표 또는 마우스 드래그로 이동이 가능합니다.</p>
 	</div>
 	
 	<script src="jquery-1.6.4.min.js"></script>
 	<script src="jquery.cfSlider.js"></script>		<!-- https://github.com/codefactory/cfSlider -->
-	<script src="jquery.cfSlidePanel.js"></script>
+	<script src="jquery.cfSlidePanel.min.js"></script>
 	<script>
-		// 모바일 브라우저 주소창 안보이게 하기
-		(function() {
-			if (!window.addEventListener) {
-				return;
+		/*
+		 * cfSliderPanel 을 두 개 만들고 있습니다.
+		 * 첫 번째는 id="container",
+		 * 두 번째는 id="container2" 입니다.
+		 */
+		
+		// 첫 번째 cfSlidePanel
+		$('#container').cfSlidePanel({
+			getIndex: function(index) {
+				$('#navigator .index').text(index + 1);		// index가 zero-base(0부터 시작)로 오기 때문에 1을 더해줌
 			}
-			
-			function hideAddressBar() {
-			
-				if (document.height <= window.outerHeight) return;		// 웹페이지의 높이가 화면높이보다 작을 때는 실행할 필요가 없으므로 종료
-				
-				var scrollTimer = setInterval(function() {
-					if ( ! pageYOffset) {	// 모바일 브라우저에서 주소창이 보이고 있을 때는 pageYOffset = 0 이므로 이때만 실행
-						scrollTo(0, 1);		// 웹페이지를 x축 0, y축 1의 위치로 끌어올림
-					} else {
-						clearInterval(scrollTimer);		// pageYOffset !=0 인 경우 반복 종료 - scrollTo(0, 1) 이 실행되었거나 사용자가 스크롤을 움직인 경우
-					}
-				}, 100);	// 100 밀리세컨드마다 반복 실행
-				
-			};
-			
-			window.addEventListener('load', hideAddressBar, false);		// 페이지 로드 되었을 때 실행
-			window.addEventListener('orientationchange', hideAddressBar, false);	// 화면이 가로/세로 전환되었을 때 실행
-		})();	// 페이지 내 다른 자바스크립트 코드에 영향을 주거나 받지 않도록 self executed anonymous function 형태로 만듬
+		});
 		
-		
-		// 좌우 화살표키로 슬라이드
+		// 두 번째 cfSlidePanel
+		$('#container2').cfSlidePanel({
+			getIndex: function(index) {
+				$('#navigator2 .index').text(index + 1);		// index가 zero-base(0부터 시작)로 오기 때문에 1을 더해줌
+			}
+		});
+	
+		// 첫 번째 cfSlidePanel 은 좌우 화살표키로 슬라이드
 		$(document).keydown(function(e) {
 			if (e.keyCode === 37) {
 				$('#container').trigger('cf-slide-panel-next');
@@ -136,11 +153,12 @@
 			}
 		});
 		
-		
-		// cfSlidePanel
-		$('#container').cfSlidePanel({
-			getIndex: function(index) {
-				$('#navigator .index').text(index + 1);		// index가 zero-base(0부터 시작)로 오기 때문에 1을 더해줌
+		// 두 번째 cfSlidePanel 은 위아래 화살표키로 슬라이드
+		$(document).keydown(function(e) {
+			if (e.keyCode === 38) {
+				$('#container2').trigger('cf-slide-panel-next');
+			} else if (e.keyCode === 40) {
+				$('#container2').trigger('cf-slide-panel-prev');
 			}
 		});
 		

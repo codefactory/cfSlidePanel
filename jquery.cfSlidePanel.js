@@ -46,14 +46,14 @@
 		panels.hide();
 		
 		// ul 생성 후 container에 append
-		$('<ul />', {
-			'class': 'cf-slide-panel-ul'
-		}).css({
-			listStyle: 'none',
-			margin: 0,
-			padding: 0,
-			width: panelWidth * panelLength
-		}).appendTo(this.element);
+		var ul = $('<ul />', {
+						'class': 'cf-slide-panel-ul'
+					}).css({
+						listStyle: 'none',
+						margin: 0,
+						padding: 0,
+						width: panelWidth * panelLength
+					}).appendTo(this.element);
 		
 		// 각 페이지들을 li에 append
 		panels.each(function(index) {
@@ -64,7 +64,7 @@
 			}).css({
 				'float': 'left',
 				width: panelWidth
-			}).appendTo('ul.cf-slide-panel-ul');
+			}).appendTo(ul);
 		});
 		
 		// ul, li 작업이 다 끝나면 다시 보이게 함
